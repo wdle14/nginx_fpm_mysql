@@ -1,0 +1,50 @@
+version: '3.7'
+services:
+  nginx-proxy:
+    restart: always
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:     
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    
+  nginx:
+    image: nginx:alpine  
+    volumes:
+      - ./webapp:/var/www/html
+      - ./nginx/site.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysqldb
+      - redis
+    environment:
+      - VIRTUAL_HOST=local.test
+    # ports:
+    # - "80:80"
+  php:
+    build: ./php
+    user: '1000:1000'
+    volumes:
+      - ./webapp:/var/www/html
+      - ./php/docker-php-ext-sodium.ini:/usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
+
+  mysqldb:
+      image: mysql:${MYSQL_VERSION}
+      restart: always
+      env_file:
+          - ".env"
+      environment:
+          - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      ports:
+          - "8989:3306"
+      volumes:
+          - "./mysql/data:/var/lib/mysql"
+  redis:
+    container_name: redis-lab
+    image: redis:alpine     
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis:/data      

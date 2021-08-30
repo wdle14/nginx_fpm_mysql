@@ -31,18 +31,16 @@ services:
       - ./php/docker-php-ext-sodium.ini:/usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
 
   mysqldb:
-      image: mysql:${MYSQL_VERSION}
-      restart: always
-      env_file:
-          - ".env"
+      image: mariadb/server:${MYSQL_VERSION}
+      restart: always      
       environment:
-          - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       ports:
           - "8989:3306"
       volumes:
           - "./mysql/data:/var/lib/mysql"
   redis:
-    container_name: redis-lab
+    container_name: ${REDIS_HOST}
     image: redis:alpine     
     ports:
       - 6379:6379

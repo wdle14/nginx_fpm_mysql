@@ -1,7 +1,7 @@
-# docker-php-nginx-redis-postgres
+# docker-php-nginx-redis-mysql
 
 PHP 7.4
-POSGRE 12
+Mysql Latest
 
 Clone This Project 
 

@@ -58,6 +58,11 @@ remove everything (volumes, images, etc.)
 sudo docker-compose down --rmi all -v --remove-orphans
 ```
 
+HTTP/HTTPS proxy
+
+The Docker daemon uses the HTTP_PROXY, HTTPS_PROXY, and NO_PROXY environmental variables in its start-up environment to configure HTTP or HTTPS proxy behavior. You cannot configure these environment variables using the daemon.json file. read more [docker systemd](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)
+
+
 Otherwise please follow the steps in the [official docker documentation](https://docs.docker.com/install/linux/docker-ce/debian/) to install docker compose
 
 ## Thanks :)

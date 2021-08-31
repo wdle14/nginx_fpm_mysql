@@ -1,5 +1,8 @@
 FROM php:7.3-fpm-alpine
 # Install Composer
+ENV http_proxy http://10.15.3.21:80
+ENV https_proxy http://10.15.3.21:80
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --update --no-cache --virtual .ext-deps \
         libjpeg-turbo-dev \

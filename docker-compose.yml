@@ -20,7 +20,7 @@ services:
       - mysqldb
       - redis
     environment:
-      - VIRTUAL_HOST=local.test
+      - VIRTUAL_HOST=${DOMAIN}
     # ports:
     # - "80:80"
   php:

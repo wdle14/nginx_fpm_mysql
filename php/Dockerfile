@@ -1,7 +1,7 @@
 FROM php:7.3-fpm-alpine
 # Install Composer
-ENV http_proxy "$PROXY"
-ENV https_proxy "$PROXY"
+ENV http_proxy $PROXY
+ENV https_proxy $PROXY
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --update --no-cache --virtual .ext-deps \

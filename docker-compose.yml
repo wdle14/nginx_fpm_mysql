@@ -28,7 +28,7 @@ services:
       context: ./php
       dockerfile: Dockerfile
       args:
-        PROXY:${PROXY}
+        PROXY: ${PROXY}
         
     user: '1000:1000'
     volumes:

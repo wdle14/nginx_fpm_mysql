@@ -25,12 +25,11 @@ RUN apk add --update --no-cache --virtual .ext-deps \
 
 RUN apk add --no-cache --upgrade bash
 
-#RUN apk add imagemagick
-
-RUN apk add imagemagick-dev
-
-RUN pecl install imagick \
-    && docker-php-ext-enable imagick
+# imagick
+RUN apk add --update --no-cache autoconf g++ imagemagick-dev libtool make pcre-dev \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && apk del autoconf g++ libtool make pcre-dev
 
 RUN \
     docker-php-ext-configure pdo_mysql && \

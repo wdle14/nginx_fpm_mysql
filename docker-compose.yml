@@ -24,13 +24,16 @@ services:
     # ports:
     # - "80:80"
   php:
-    build: ./php
+    build: 
+      context: ./php
+      dockerfile: Dockerfile
+      args:
+        PROXY${PROXY}
+
     user: '1000:1000'
     volumes:
       - ./webapp:/var/www/html
-      - ./php/docker-php-ext-sodium.ini:/usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
-    args:
-      - PROXY:${PROXY}
+      - ./php/docker-php-ext-sodium.ini:/usr/local/etc/php/conf.d/docker-php-ext-sodium.ini    
 
   mysqldb:
       image: mariadb/server:${MYSQL_VERSION}

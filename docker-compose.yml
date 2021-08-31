@@ -30,7 +30,7 @@ services:
       - ./webapp:/var/www/html
       - ./php/docker-php-ext-sodium.ini:/usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
     args:
-      - PROXY=${PROXY}
+      - PROXY:${PROXY}
 
   mysqldb:
       image: mariadb/server:${MYSQL_VERSION}

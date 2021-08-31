@@ -1,7 +1,7 @@
 FROM php:7.3-fpm-alpine
 # Install Composer
-ENV http_proxy http://10.15.3.21:80
-ENV https_proxy http://10.15.3.21:80
+ENV http_proxy "$PROXY"
+ENV https_proxy "$PROXY"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --update --no-cache --virtual .ext-deps \
@@ -16,10 +16,13 @@ RUN apk add --update --no-cache --virtual .ext-deps \
         g++ \
         make \
         openssl-dev \
-        icu-dev
+        icu-dev \
+        libtool \
+        pcre-dev
+
 RUN apk add --no-cache --upgrade bash
 
-RUN apk add imagemagick
+#RUN apk add imagemagick
 
 RUN apk add imagemagick-dev
 

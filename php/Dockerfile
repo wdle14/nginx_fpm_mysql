@@ -1,5 +1,8 @@
 FROM php:7.3-fpm-alpine
 # Install Composer
+
+ARG PROXY
+
 ENV http_proxy $PROXY
 ENV https_proxy $PROXY
 

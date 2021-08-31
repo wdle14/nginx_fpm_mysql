@@ -29,7 +29,7 @@ services:
     volumes:
       - ./webapp:/var/www/html
       - ./php/docker-php-ext-sodium.ini:/usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
-    environment:
+    args:
       - PROXY=${PROXY}
 
   mysqldb:

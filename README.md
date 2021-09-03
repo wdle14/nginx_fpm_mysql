@@ -6,7 +6,7 @@ Mysql Latest
 Clone This Project 
 
 ```bash
-git clone https://github.com/wdle14/nginx_fpm_pgdocker.git
+git clone https://github.com/wdle14/nginx_fpm_mysql.git
 ```
 
 This is a backend stack of decoupled technologies in docker containers.

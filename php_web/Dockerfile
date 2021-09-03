@@ -39,6 +39,11 @@ RUN apk add --no-cache php7 \
     php7-pdo_mysql \
     php7-pdo_sqlite \
     php7-tokenizer \
+    php7-ctype \
+    php7-gd \
+    php7-pgsql \
+    php7-pdo_pgsql \
+    php7-xmlreader \
     php7-pecl-redis
 
 #RUN ln -s /usr/bin/php7 /usr/bin/php
@@ -64,7 +69,8 @@ COPY ./php/www.conf /etc/php7/php-fpm.d/www.conf
 
 
 # Configure nginx
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+#RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/site.conf /etc/nginx/http.d/default.conf
 #COPY ./nginx/fastcgi-php.conf /etc/nginx/fastcgi-php.conf
 

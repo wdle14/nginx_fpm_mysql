@@ -49,7 +49,7 @@ this docker file supports laravel environment
 for some reason you have a problem with limited web server resources in handling many requests, then you just need to do scaling on the web server
 
 ```bash
-docker-compose scale nginx={number scaling}
+docker-compose scale php-web={number scaling}
 ```
 
 remove everything (volumes, images, etc.)

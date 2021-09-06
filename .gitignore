@@ -162,6 +162,7 @@ $RECYCLE.BIN/
 
 # Database data
 mysql/data
+postgres/data
 
 # Redis
 redis

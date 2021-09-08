@@ -44,6 +44,7 @@ RUN apk add --no-cache php7 \
     php7-pgsql \
     php7-pdo_pgsql \
     php7-xmlreader \
+    php7-intl \
     php7-pecl-redis
 
 #RUN ln -s /usr/bin/php7 /usr/bin/php

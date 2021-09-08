@@ -23,8 +23,8 @@ services:
       - mysqldb
       - redis
       - pgsql
-    ports:
-    - "8081:80"
+    # ports:
+    # - "8081:80"
   mysqldb:
       image: mariadb/server:${MYSQL_VERSION}
       restart: always      

@@ -170,3 +170,6 @@ redis
 # www-data
 webapp
 # End of https://www.gitignore.io/api/code,linux,macos,windows,phpstorm
+
+# nginx conf
+php_web/nginx/site.conf

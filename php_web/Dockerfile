@@ -46,7 +46,8 @@ RUN apk add --no-cache php7 \
     php7-xmlreader \
     php7-intl \
     php7-pecl-redis \
-    php7-bcmath
+    php7-bcmath \
+    php7-mysqli
 
 #RUN ln -s /usr/bin/php7 /usr/bin/php
 

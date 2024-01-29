@@ -155,21 +155,13 @@ $RECYCLE.BIN/
 *.msix
 *.msm
 *.msp
+
+##  Environment
 .env
-
-# Windows shortcuts
-*.lnk
-
-# Database data
-mysql/data
-
-# Redis
-redis
-
-# www-data
-webapp
-# End of https://www.gitignore.io/api/code,linux,macos,windows,phpstorm
 docker-compose.yml
-.env
-redis
+Service
 Docker_vlm
+webapp
+postgres
+mysql
+redis

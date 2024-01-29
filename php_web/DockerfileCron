@@ -1,4 +1,4 @@
-FROM wdle14/fpm_nginx:8.2.2-focal
+FROM wdle14/fpm_nginx:7.4.30-focal
 
 ARG PROXY
 ARG NO_PROXY
@@ -15,7 +15,7 @@ RUN apt-get update -y
 
 RUN apt-get install -y cron
 
-RUN apt install php8.2-bcmath -y
+#RUN apt install php7.4-bcmath -y
 
 # RUN  /etc/init.d/cron start
 
@@ -23,20 +23,20 @@ RUN apt install php8.2-bcmath -y
 COPY ./php/supervisord-cron.ini /etc/supervisor/conf.d/supervisord.conf
 
 # Configure php-fpm
-RUN mv /etc/php/8.2/fpm/php-fpm.conf /etc/php/8.2/fpm/php-fpm.conf.ori
-RUN mv /etc/php/8.2/fpm/pool.d/www.conf   /etc/php/8.2/fpm/pool.d/www.conf.ori 
+RUN mv /etc/php/7.4/fpm/php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf.ori
+RUN mv /etc/php/7.4/fpm/pool.d/www.conf   /etc/php/7.4/fpm/pool.d/www.conf.ori 
 
-COPY ./php/php-fpm.conf /etc/php/8.2/fpm/php-fpm.conf
-COPY ./php/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+COPY ./php/php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
+COPY ./php/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 
 RUN mkdir -p /var/run/php/ && chmod -R 777 /var/run/php
 # RUN touch /var/run/php/php8.0-fpm.pid
 # RUN touch /var/run/php/php8.0-fpm.sock
 
-COPY ./php/99-custom.ini /etc/php/8.2/cli/conf.d/99-custom.ini
+COPY ./php/99-custom.ini /etc/php/7.4/cli/conf.d/99-custom.ini
 
-COPY ./php/99-custom.ini /etc/php/8.2/fpm/conf.d/99-custom.ini
+COPY ./php/99-custom.ini /etc/php/7.4/fpm/conf.d/99-custom.ini
 
 
 # Configure nginx
@@ -51,9 +51,9 @@ RUN mkdir -p /laravel/log/swoole/
 RUN chmod 777 /laravel/log/swoole/
 
 #Add Cront TAB
-ADD ./php/cron-lara /etc/cron.d/cron-lara
-#RUN touch /etc/cron.d/cron-lara
-#RUN (echo "* * * * * root cd /var/www/html/elis && php artisan schedule:run --no-ansi >> /var/log/cron.log 2>&1" > /etc/cron.d/cron-lara)
+#ADD ./php/cron-lara /etc/cron.d/cron-lara
+RUN touch /etc/cron.d/cron-lara
+RUN (echo "* * * * * root cd /var/www/html/core_dev && php artisan schedule:run --no-ansi >> /var/log/cron.log 2>&1" > /etc/cron.d/cron-lara)
 RUN chmod 0644 /etc/cron.d/cron-lara
 RUN touch /var/log/cron.log
 

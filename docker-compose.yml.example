@@ -1,0 +1,42 @@
+version: '3.7'
+services:  
+
+  redis:
+      container_name: ${REDIS_HOST}
+      restart: always
+      image: redis:alpine
+      # ports:
+      #   - 6379:6379
+      volumes:
+       - ./Docker_vlm/redis:/data     
+  
+  webroot:   
+    build: 
+      context: ./php_web
+      dockerfile: Dockerfile
+      args:
+        PROXY: ${PROXY} 
+        NO_PROXY: ${NO_PROXY}
+    #container_name: elis_wow 
+    working_dir: /var/www/html
+    restart: always     
+    # command: sleep 1000
+    volumes:
+    # Change directory name to your project name. Example "./app/YOUR_DIRECTORY_NAME:/app"
+      - ./Service:/var/www/html
+    #ports:
+    #  - "80:80" # Swoole port
+    # - "9000:9000" # PHP-FPM port
+    depends_on:
+        - redis 
+
+networks: 
+  default: 
+    external: 
+      name: local-elis
+
+ 
+
+  
+
+  

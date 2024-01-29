@@ -14,7 +14,7 @@
 ; Pid file
 ; Note: the default prefix is /usr/local/var
 ; Default Value: none
-pid = /var/run/php/php8.2-fpm.pid
+pid = /var/run/php/php7.4-fpm.pid
 
 ; Error log file
 ; If it's set to "syslog", log is sent to syslogd instead of being written
@@ -289,4 +289,4 @@ error_log = /var/log/php-fpm.log
 ; Relative path can also be used. They will be prefixed by:
 ;  - the global prefix if it's been set (-p argument)
 ;  - /usr/local otherwise
-include=/etc/php/8.2/fpm/pool.d/*.conf
+include=/etc/php/7.4/fpm/pool.d/*.conf

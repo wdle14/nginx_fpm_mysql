@@ -51,9 +51,9 @@ RUN mkdir -p /laravel/log/swoole/
 RUN chmod 777 /laravel/log/swoole/
 
 #Add Cront TAB
-#ADD ./php/cron-lara /etc/cron.d/cron-lara
-RUN touch /etc/cron.d/cron-lara
-RUN (echo "* * * * * root cd /var/www/html/core_dev && php artisan schedule:run --no-ansi >> /var/log/cron.log 2>&1" > /etc/cron.d/cron-lara)
+ADD ./php/cron-lara /etc/cron.d/cron-lara
+#RUN touch /etc/cron.d/cron-lara
+#RUN (echo "* * * * * root cd /var/www/html/core_dev && php artisan schedule:run --no-ansi >> /var/log/cron.log 2>&1" > /etc/cron.d/cron-lara)
 RUN chmod 0644 /etc/cron.d/cron-lara
 RUN touch /var/log/cron.log
 
